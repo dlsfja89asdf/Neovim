@@ -31,7 +31,7 @@ return {
                 ensure_installed = {
                     "vim", "lua", "vimdoc", "c", "cpp", "asm", "c_sharp", "cmake", "dockerfile", "git_config",
                     "git_rebase", "gitattributes", "gitcommit", "gitignore", "graphql", "javascript", "json", "jsonc",
-                    "make", "markdown", "python", "xml", "groovy"
+                    "make", "markdown", "markdown_inline", "python", "xml", "groovy"
                 },
                 sync_install = false,
                 auto_install = true,
@@ -144,8 +144,12 @@ return {
     },
     {
         'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        name = 'render-markdown',          -- Only needed if you have another plugin named markdown.nvim
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter', -- Mandatory
+            'nvim-tree/nvim-web-devicons', -- Optional but recommended
+        },
+        ft = "markdown",
         config = function()
             require('render-markdown').setup({})
         end,
@@ -533,7 +537,6 @@ return {
     },
     {
         "Badhi/nvim-treesitter-cpp-tools",
-        event = "VeryLazy",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
     }
 }
