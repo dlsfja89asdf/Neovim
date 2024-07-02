@@ -6,7 +6,6 @@ return {
       require "configs.conform"
     end,
   },
-
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -469,7 +468,24 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    lazy = false,
+    event = "VeryLazy",
+    cmd = { "TodoTelescope" },
+    keys = {
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Next todo comment",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Previous todo comment",
+      },
+    },
     config = function()
       require("todo-comments").setup()
     end,

@@ -46,15 +46,6 @@ vim.g.VM_maps = {
   ["Select All"] = "",
 }
 
--- TODO
-vim.keymap.set("n", "]t", function()
-  require("todo-comments").jump_next()
-end, { desc = "Next todo comment" })
-
-vim.keymap.set("n", "[t", function()
-  require("todo-comments").jump_prev()
-end, { desc = "Previous todo comment" })
-
 -- custom commands
 vim.api.nvim_create_user_command("CpPath", function()
   local path = vim.fn.expand("%:p"):gsub("\\", "/")
