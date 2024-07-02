@@ -605,13 +605,22 @@ return {
     "Badhi/nvim-treesitter-cpp-tools",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     ft = { "c", "cpp", "h", "hpp" },
+    config = function()
+      require("nt-cpp-tools").setup()
+    end,
   },
   {
     "p00f/clangd_extensions.nvim",
     ft = { "c", "cpp", "h", "hpp" },
+    config = function()
+      require("clangd_extensions").setup()
+    end,
   },
   {
     "stevearc/overseer.nvim",
-    lazy = false,
+    event = "VeryLazy",
+    config = function()
+      require("overseer").setup()
+    end,
   },
 }

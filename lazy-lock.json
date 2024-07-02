@@ -43,7 +43,7 @@
   "telescope-frecency.nvim": { "branch": "master", "commit": "f3f93253797714aecfb95ef7e25f8ff7693430b9" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "7011eaae0ac1afe036e30c95cf80200b8dc3f21a" },
-  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "01ded45a2c1054d9751b13571a0baa1e80fe9456" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "83e04d296ee18ba0d44202fc3b706b32cdae7215" },
   "todo-comments.nvim": { "branch": "main", "commit": "51e10f838e84b4756c16311d0b1ef0972c6482d2" },
   "tree-sitter-powershell": { "branch": "main", "commit": "804d86fd4ad286bd0cc1c1f0f7b28bd7af6755ad" },
   "trouble.nvim": { "branch": "main", "commit": "e5d0e04121c662ce29190a57dd03655d43c59d44" },

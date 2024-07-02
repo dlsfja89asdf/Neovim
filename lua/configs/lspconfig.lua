@@ -42,8 +42,30 @@ lspconfig.clangd.setup {
     ".git"
   ),
   on_attach = function(client, bufnr)
-    require("clangd_extensions.inlay_hints").setup_autocmd()
-    require("clangd_extensions.inlay_hints").set_inlay_hints()
+    vim.keymap.set("n", "<M-o>", "<cmd>ClangdSwitchSourceHeader<CR>", { desc = "Switch source/header" })
+    vim.cmd.HideVirtualText()
+
+    local hints_insert_group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
+    local hints_group = vim.api.nvim_create_augroup("ClangdInlayHints", { clear = false })
+    vim.keymap.set("n", "<leader>lh", function()
+      if require("clangd_extensions.inlay_hints").toggle_inlay_hints() then
+        require("clangd_extensions.inlay_hints").setup_autocmd()
+        vim.api.nvim_create_autocmd("InsertEnter", {
+          group = hints_insert_group,
+          buffer = bufnr,
+          callback = require("clangd_extensions.inlay_hints").disable_inlay_hints,
+        })
+        vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+          group = hints_insert_group,
+          buffer = bufnr,
+          callback = require("clangd_extensions.inlay_hints").set_inlay_hints,
+        })
+      else
+        vim.api.nvim_clear_autocmds { group = hints_insert_group, buffer = bufnr }
+        vim.api.nvim_clear_autocmds { group = hints_group, buffer = bufnr }
+      end
+    end, { buffer = bufnr, desc = "[l]sp [h]ints toggle" })
+    vim.cmd.normal "lh"
     on_attach(client, bufnr)
   end,
 }
@@ -99,5 +121,3 @@ map("n", "<space>e", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 map("n", "<space>q", vim.diagnostic.setloclist)
-
-map("n", "<M-o>", "<cmd>ClangdSwitchSourceHeader<CR>", { desc = "Switch source/header" })
