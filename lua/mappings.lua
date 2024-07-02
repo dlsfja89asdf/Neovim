@@ -79,3 +79,13 @@ end, {})
 vim.api.nvim_create_user_command("ShowVirtualText", function()
   vim.diagnostic.config { virtual_text = true }
 end, {})
+
+vim.api.nvim_create_user_command("Edit", function(opts)
+  local path = vim.fn.expand(opts.fargs[1]:gsub('"', "")):gsub("\\", "/")
+  vim.cmd("e " .. path)
+end, { nargs = 1 })
+
+vim.keymap.del("n", "<leader>e")
+vim.keymap.set("n", "<leader>e", function()
+  vim.cmd.Edit(vim.fn.getreg('+'))
+end, { desc = "Open file from clipboard" })
