@@ -144,10 +144,10 @@ return {
     },
     {
         'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown',          -- Only needed if you have another plugin named markdown.nvim
+        name = 'render-markdown',              -- Only needed if you have another plugin named markdown.nvim
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- Mandatory
-            'nvim-tree/nvim-web-devicons', -- Optional but recommended
+            'nvim-tree/nvim-web-devicons',     -- Optional but recommended
         },
         ft = "markdown",
         config = function()
@@ -288,10 +288,14 @@ return {
     },
     {
         'numToStr/Comment.nvim',
-        lazy = false,
+        keys = "<leader>/",
+        event = "VeryLazy",
         config = function()
             require("Comment").setup({
-                ignore = "^$"
+                ignore = "^$",
+                toggler = {
+                    line = "<leader>/",
+                },
             })
             local ft = require('Comment.ft')
             ft({ 'c', 'cpp', 'h', 'hpp' }, '//%s')
@@ -538,5 +542,14 @@ return {
     {
         "Badhi/nvim-treesitter-cpp-tools",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
+        ft = { "c", "cpp", "h", "hpp" },
+    },
+    {
+        "p00f/clangd_extensions.nvim",
+        ft = { "c", "cpp", "h", "hpp" },
+    },
+    {
+        "stevearc/overseer.nvim",
+        lazy = false,
     }
 }

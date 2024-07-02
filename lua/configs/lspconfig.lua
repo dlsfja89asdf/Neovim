@@ -40,7 +40,12 @@ lspconfig.clangd.setup({
         'compile_flags.txt',
         'configure.ac',
         '.git'
-    )
+    ),
+    on_attach = function(client, bufnr)
+        require("clangd_extensions.inlay_hints").setup_autocmd()
+        require("clangd_extensions.inlay_hints").set_inlay_hints()
+        on_attach(client, bufnr)
+    end
 })
 
 -- pyright
@@ -62,6 +67,7 @@ lspconfig.powershell_es.setup({
     bundle_path = vim.fn.stdpath "data" .. "/mason/packages/powershell-editor-services",
     on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        on_attach(client, bufnr)
     end,
     settings = {
         powershell = {
