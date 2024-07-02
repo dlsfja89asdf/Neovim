@@ -304,7 +304,14 @@ return {
     },
     {
         "nvim-telescope/telescope-frecency.nvim",
-        lazy = false,
+        cmd = "Telescope frecency",
+        keys = {
+            {
+                "<C-p>",
+                "<cmd>Telescope frecency workspace=CWD<cr>",
+                desc = "Open file picker",
+            },
+        },
         config = function()
             require("telescope").setup {
                 defaults = {
