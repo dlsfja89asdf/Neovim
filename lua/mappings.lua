@@ -2,7 +2,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 local unmap = vim.keymap.del
-local telescope_builtin = require("telescope.builtin")
+local telescope_builtin = require "telescope.builtin"
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
@@ -18,8 +18,12 @@ vim.keymap.set("n", "<leader>sc", "<cmd>Telescope lsp_outgoing_calls<CR>", { des
 vim.keymap.set("n", "<leader>sI", "<cmd>Telescope lsp_implementations<CR>", { desc = "Search implementations" })
 vim.keymap.set("n", "<leader>sS", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Search document symbols" })
 vim.keymap.set("n", "<leader>st", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Search type definitions" })
-vim.keymap.set("n", "<leader>ss", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
-    { desc = "Search dynamic workspace symbols" })
+vim.keymap.set(
+  "n",
+  "<leader>ss",
+  "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
+  { desc = "Search dynamic workspace symbols" }
+)
 
 -- Telescope git
 vim.keymap.set("n", "<leader>gB", "<cmd>Telescope git_branches<CR>", { desc = "Git branches" })
@@ -28,50 +32,50 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Gi
 -- frecency
 vim.keymap.del("n", "<C-p>")
 vim.keymap.set("n", "<C-p>", function()
-    require("telescope").extensions.frecency.frecency {
-        workspace = "CWD",
-    }
+  require("telescope").extensions.frecency.frecency {
+    workspace = "CWD",
+  }
 end)
 
 -- vim-visual-multi Remove conflicting mappings
 vim.g.VM_leader = " "
 vim.g.VM_maps = {
-    ["Find Under"] = '<C-d>',
-    ["I BS"] = '',
-    ["Visual All"] = '',
-    ["Select All"] = '',
+  ["Find Under"] = "<C-d>",
+  ["I BS"] = "",
+  ["Visual All"] = "",
+  ["Select All"] = "",
 }
 
 -- TODO
 vim.keymap.set("n", "]t", function()
-    require("todo-comments").jump_next()
+  require("todo-comments").jump_next()
 end, { desc = "Next todo comment" })
 
 vim.keymap.set("n", "[t", function()
-    require("todo-comments").jump_prev()
+  require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
 -- custom commands
 vim.api.nvim_create_user_command("CpPath", function()
-    local path = vim.fn.expand("%:p"):gsub("\\", "/")
-    vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+  local path = vim.fn.expand("%:p"):gsub("\\", "/")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
 
 vim.api.nvim_create_user_command("CpRelPath", function()
-    local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":."):gsub("\\", "/")
-    vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+  local path = vim.fn.fnamemodify(vim.fn.expand "%", ":."):gsub("\\", "/")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
 end, {})
 
 vim.api.nvim_create_user_command("ClearTempShada", function()
-    os.execute('powershell /c "Remove-Item C:\\Users\\GH21140\\AppData\\Local\\nvim-data\\shada\\main.shada.tmp.*"')
+  os.execute 'powershell /c "Remove-Item C:\\Users\\GH21140\\AppData\\Local\\nvim-data\\shada\\main.shada.tmp.*"'
 end, {})
 
 vim.api.nvim_create_user_command("HideVirtualText", function()
-    vim.diagnostic.config({ virtual_text = false })
+  vim.diagnostic.config { virtual_text = false }
 end, {})
 
 vim.api.nvim_create_user_command("ShowVirtualText", function()
-    vim.diagnostic.config({ virtual_text = true })
+  vim.diagnostic.config { virtual_text = true }
 end, {})
