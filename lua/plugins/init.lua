@@ -514,45 +514,6 @@ return {
     },
   },
   {
-    "tristone13th/lspmark.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("lspmark").setup()
-      require("telescope").load_extension "lspmark"
-    end,
-    dependencies = {
-      { "nvim-telescope/telescope.nvim" },
-    },
-    keys = {
-      {
-        "<leader>ms",
-        "<cmd>Telescope lspmark<cr>",
-        desc = "Show Bookmarks",
-      },
-      {
-        "<leader>mm",
-        function()
-          require("lspmark.bookmarks").toggle_bookmark { with_comment = false }
-        end,
-        desc = "Toggle Bookmark",
-      },
-      {
-        "<leader>mc",
-        function()
-          require("lspmark.bookmarks").modify_comment()
-        end,
-        desc = "Modify Bookmark Comment",
-      },
-      {
-        "<leader>mk",
-        function()
-          require("lspmark.bookmarks").show_comment()
-        end,
-        desc = "Show Bookmark Comment",
-      },
-    },
-  },
-  {
     "chentoast/marks.nvim",
     lazy = false,
     opts = {
