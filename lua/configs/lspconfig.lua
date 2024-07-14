@@ -43,7 +43,6 @@ lspconfig.clangd.setup {
   ),
   on_attach = function(client, bufnr)
     vim.keymap.set("n", "<M-o>", "<cmd>ClangdSwitchSourceHeader<CR>", { desc = "Switch source/header" })
-    vim.cmd.HideVirtualText()
 
     local hints_insert_group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
     local hints_group = vim.api.nvim_create_augroup("ClangdInlayHints", { clear = false })

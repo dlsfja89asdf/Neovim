@@ -336,7 +336,7 @@ return {
         },
       }
       local ft = require "Comment.ft"
-      ft({ "c", "cpp", "h", "hpp" }, "//%s")
+      ft({ "c", "cpp", "h", "hpp" }, "//%s", "/*%s*/")
       ft({ "python" }, "#%s")
     end,
   },
@@ -447,6 +447,25 @@ return {
           { name = "nvim_lsp_signature_help" },
         }),
       }
+
+      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+      -- cmp.setup.cmdline({ "/", "?" }, {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = {
+      --     { name = "buffer" },
+      --   },
+      -- })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      -- cmp.setup.cmdline(":", {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = cmp.config.sources({
+      --     { name = "path" },
+      --   }, {
+      --     { name = "cmdline" },
+      --   }),
+      --   matching = { disallow_symbol_nonprefix_matching = false },
+      -- })
     end,
     dependencies = {
       { "rasulomaroff/cmp-bufname" },
@@ -555,10 +574,12 @@ return {
   },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       vim.opt.updatetime = 100
       vim.diagnostic.config { virtual_text = false }
+      vim.cmd.HideVirtualText()
       require("tiny-inline-diagnostic").setup()
     end,
   },
@@ -582,6 +603,26 @@ return {
     event = "VeryLazy",
     config = function()
       require("overseer").setup()
+    end,
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+  },
+  {
+    "gorbit99/codewindow.nvim",
+    event = "BufEnter",
+    config = function()
+      local codewindow = require "codewindow"
+      codewindow.setup {
+        auto_enable = true,
+        minimap_width = 10,
+        -- screen_bounds = "background",
+      }
+      codewindow.apply_default_keybinds()
+      -- Set the highlights
+      vim.api.nvim_set_hl(0, "CodewindowBorder", { fg = "#222222" })
+      -- vim.api.nvim_set_hl(0, "CodewindowUnderline", { fg = "#aaaaaa" })
     end,
   },
 }
