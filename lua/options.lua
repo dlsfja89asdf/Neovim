@@ -10,6 +10,7 @@ vim.api.nvim_set_option("clipboard", "unnamed")
 vim.api.nvim_set_option("shell", "powershell")
 vim.api.nvim_set_option("shellxquote", "")
 vim.api.nvim_set_option("shellquote", "")
+vim.api.nvim_set_option("cmdheight", 0)
 vim.api.nvim_set_option(
   "shellcmdflag",
   "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding = New-Object Text.UTF8Encoding $false;"

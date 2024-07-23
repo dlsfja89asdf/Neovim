@@ -205,6 +205,10 @@ return {
       },
       bottom = {
         {
+          ft = "fugitive",
+          title = "Git",
+        },
+        {
           ft = "qf",
           title = "QuickFix",
         },
@@ -225,7 +229,6 @@ return {
           size = {
             height = 0.25,
           },
-          pinned = true,
           open = "<cmd>Trouble diagnostics toggle<cr>",
         },
       },
@@ -625,4 +628,13 @@ return {
       -- vim.api.nvim_set_hl(0, "CodewindowUnderline", { fg = "#aaaaaa" })
     end,
   },
+  -- {
+  --   "gh-liu/fold_line.nvim",
+  --   event = "VeryLazy",
+  --   init = function()
+  --     -- change the char of the line, see the `Appearance` section
+  --     vim.g.fold_line_char_open_start = "╭"
+  --     vim.g.fold_line_char_open_end = "╰"
+  --   end,
+  -- },
 }
