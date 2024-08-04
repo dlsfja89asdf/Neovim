@@ -526,7 +526,7 @@ return {
     "airbus-cert/tree-sitter-powershell",
     lazy = true,
     -- Skip this file
-    build = "git update-index --skip-worktree Cargo.toml",
+    -- build = "git checkout -f master",
   },
   {
     "TheLeoP/powershell.nvim",
@@ -577,7 +577,7 @@ return {
   },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    enabled = false,
+    -- enabled = false,
     event = "VeryLazy",
     config = function()
       vim.opt.updatetime = 100
