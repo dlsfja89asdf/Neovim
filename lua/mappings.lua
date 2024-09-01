@@ -37,6 +37,9 @@ vim.keymap.set("n", "<C-p>", function()
   }
 end)
 
+-- gen
+vim.keymap.set({ 'n', 'v' }, '<leader>]', ':Gen<CR>')
+
 -- vim-visual-multi Remove conflicting mappings
 vim.g.VM_leader = " "
 vim.g.VM_maps = {
